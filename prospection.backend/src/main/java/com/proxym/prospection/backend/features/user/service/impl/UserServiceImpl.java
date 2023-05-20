@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
         }
 
         // Check if the new password is provided and validate the old password
-        if (userDetails.getNewPassword() != null) {
+        if (userDetails.getPassword() != null) {
             if (userDetails.getOldPassword() == null || !passwordEncoder.matches(userDetails.getOldPassword(), user.getPassword())) {
                 return ResponseEntity.badRequest().build();
             }
@@ -61,13 +61,13 @@ public class UserServiceImpl implements UserService {
 
         user.setUsername(userDetails.getUsername());
 
-        if (userDetails.getNewPassword() != null && userDetails.getConfirmedNewPassword() != null) {
+        if (userDetails.getPassword() != null && userDetails.getConfirmPassword() != null) {
             // Check if the new password and confirmed new password match
-            if (!userDetails.getNewPassword().equals(userDetails.getConfirmedNewPassword())) {
+            if (!userDetails.getPassword().equals(userDetails.getConfirmPassword())) {
                 return ResponseEntity.badRequest().build();
             }
 
-            String encryptedPassword = passwordEncoder.encode(userDetails.getNewPassword());
+            String encryptedPassword = passwordEncoder.encode(userDetails.getPassword());
             user.setPassword(encryptedPassword);
         }
 
@@ -76,8 +76,8 @@ public class UserServiceImpl implements UserService {
         user.setUsername(userDetails.getUsername());
         user.setPhone(userDetails.getPhone());
         user.setOldPassword(passwordEncoder.encode(userDetails.getOldPassword()));
-        user.setNewPassword(passwordEncoder.encode(userDetails.getNewPassword()));
-        user.setConfirmedNewPassword(passwordEncoder.encode(userDetails.getConfirmedNewPassword()));
+        user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
+        user.setConfirmPassword(passwordEncoder.encode(userDetails.getConfirmPassword()));
         user.setRole(userDetails.getRole());
 
         User updatedUser = userRepository.save(user);
