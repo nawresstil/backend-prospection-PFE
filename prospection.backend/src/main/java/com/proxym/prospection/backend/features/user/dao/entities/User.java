@@ -1,5 +1,6 @@
 package com.proxym.prospection.backend.features.user.dao.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.proxym.prospection.backend.features.user.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,22 +29,28 @@ public class User implements UserDetails {
     private String firstname;
 
     private String lastname;
+
+    private String JoiningDate;
+
+    private String Designation;
+
+    private String Departments;
+
     @Column(unique = true)
     private String username;
 
     @Column(unique = true)
     private String email;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+
+    private String confirmPassword;
+
     private Number phone;
+
     private String oldPassword;
-    private String newPassword;
-    private String confirmedNewPassword;
-
-
     @Enumerated(EnumType.STRING)
     private Role role;
-
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
