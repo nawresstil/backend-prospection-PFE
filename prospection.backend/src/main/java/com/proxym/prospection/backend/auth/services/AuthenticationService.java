@@ -30,10 +30,13 @@ public class AuthenticationService {
         var user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
-                .username(request.getUsername())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .email(request.getEmail())
+                .JoiningDate(request.getJoiningDate())
                 .role(request.getRole())
+                .Departments(request.getDepartments())
+                .username(request.getUsername())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .phone(request.getPhone())
                 .build();
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
