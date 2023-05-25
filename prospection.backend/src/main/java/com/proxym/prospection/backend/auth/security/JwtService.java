@@ -1,5 +1,7 @@
 package com.proxym.prospection.backend.auth.security;
 
+import com.proxym.prospection.backend.features.DTO.UserRoleDTO;
+import com.proxym.prospection.backend.features.user.dao.entities.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -28,14 +30,15 @@ public class JwtService {
         return  claimsResolver.apply(claims);
     }
 
-    public String generateToken(UserDetails userDetails){
-
-        return generateToken(new HashMap<>(), userDetails);
+    public String generateToken(User userDetails){
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", userDetails);
+        return doGenerateToken(claims, userDetails);
     }
 
-    public String generateToken(
+    public String doGenerateToken(
             Map<String, Object> extraClaims,
-            UserDetails userDetails
+            User userDetails
     ){
         return Jwts
                 .builder()

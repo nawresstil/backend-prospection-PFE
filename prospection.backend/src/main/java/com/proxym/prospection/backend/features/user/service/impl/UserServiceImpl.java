@@ -23,7 +23,10 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
-
+    @Override
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
     @Override
     public ResponseEntity<List<User>> getAllUsers() {
 
@@ -74,7 +77,9 @@ public class UserServiceImpl implements UserService {
         user.setFirstname(userDetails.getFirstname());
         user.setLastname(userDetails.getLastname());
         user.setUsername(userDetails.getUsername());
-        user.setPhone(userDetails.getPhone());
+/*
+//        user.setPhone(userDetails.getPhone());
+*/
         user.setOldPassword(passwordEncoder.encode(userDetails.getOldPassword()));
         user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
         user.setConfirmPassword(passwordEncoder.encode(userDetails.getConfirmPassword()));

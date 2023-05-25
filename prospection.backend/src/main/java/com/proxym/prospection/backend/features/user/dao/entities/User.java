@@ -46,11 +46,12 @@ public class User implements UserDetails {
 
     private String confirmPassword;
 
-    private Number phone;
+//    private Number phone;
 
     private String oldPassword;
     @Enumerated(EnumType.STRING)
     private Role role;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

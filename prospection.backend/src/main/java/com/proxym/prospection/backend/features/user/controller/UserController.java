@@ -5,6 +5,7 @@ import com.proxym.prospection.backend.features.user.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,11 @@ public class UserController {
     public ResponseEntity<List<User>> getAllUsers() {
 
         return userService.getAllUsers();
+    }
+    @GetMapping("/profile")
+    public User getUser(Principal principal) {
+        String username = principal.getName();
+        return userService.getUserByUsername(username);
     }
     @GetMapping("/first/{firstname}")
     public ResponseEntity<User> getUserByFirstname(@PathVariable String firstname)

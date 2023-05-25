@@ -5,6 +5,7 @@ import com.proxym.prospection.backend.auth.dao.AuthenticationRequest;
 import com.proxym.prospection.backend.auth.dao.AuthenticationResponse;
 import com.proxym.prospection.backend.auth.dao.RegisterRequest;
 import com.proxym.prospection.backend.auth.security.JwtService;
+import com.proxym.prospection.backend.features.DTO.UserRoleDTO;
 import com.proxym.prospection.backend.features.user.dao.entities.User;
 import com.proxym.prospection.backend.features.user.dao.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class AuthenticationService {
     //this authenticationResponse contains the token
     public AuthenticationResponse register(RegisterRequest request ) {
 
-        var user = User.builder()
+       User  user = UserRoleDTO.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
                 .JoiningDate(request.getJoiningDate())
@@ -36,10 +37,10 @@ public class AuthenticationService {
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .phone(request.getPhone())
+//                .phone(request.getPhone())
                 .build();
         repository.save(user);
-        var jwtToken = jwtService.generateToken(user);
+        var jwtToken = jwtService.generateToken( user);
         return AuthenticationResponse
                 .builder()
                 .token(jwtToken)
@@ -57,8 +58,8 @@ public class AuthenticationService {
                 )
         );
         // if the credentials are correct then return the token
-        User user = repository.findByUsername(request.getUsername())
-                .orElseThrow();
+        User user = repository.findByUsername(request.getUsername());
+//                .orElseThrow();
         String jwtToken = jwtService.generateToken(user);
 
         return AuthenticationResponse

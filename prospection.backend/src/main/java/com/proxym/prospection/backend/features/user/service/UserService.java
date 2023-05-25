@@ -10,6 +10,7 @@ import java.util.Map;
 
 public interface UserService {
     ResponseEntity<List<User>> getAllUsers();
+    User getUserByUsername(String username);
 
     ResponseEntity<User> getUserById(@PathVariable Long id);
 
