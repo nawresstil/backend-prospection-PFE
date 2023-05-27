@@ -15,25 +15,16 @@ public interface EntrepriseService {
 
     Entreprise createEntreprise(@RequestBody Entreprise entreprise);
 
-//  Entreprise createEntreprise(@RequestBody Entreprise entreprise,@RequestParam("image") MultipartFile file);
-
-
     ResponseEntity<Entreprise> getEntrepriseById(@PathVariable Long id);
     ResponseEntity<Entreprise> getEntrepriseByName (@PathVariable String societyName);
 //    Optional<EntrepriseDTO> findProspectById(Long id);
 
 //    List<String> getAllBySocietyName();
-
-    ResponseEntity<Entreprise> updateEntreprise(@PathVariable Long Id, @RequestBody Entreprise entrepriseDetails);
+    Entreprise modifier (@RequestBody Entreprise entrepriseDetails, @PathVariable Long id);
 
     ResponseEntity<Entreprise> deleteEntreprise(@PathVariable Long id);
 
     List<Entreprise> findAllEnteprises();
 
 
-    List<Entreprise> findEntreprisesWithSorting(@PathVariable String field);
-
-    Page<Entreprise> findEntreprisesWithPagination(int offset, int pageSize);
-
-    Page<Entreprise> findEntreprisesWithPaginationAndSorting(int offset, int pageSize, String field);
 }

@@ -37,14 +37,14 @@ System.out.println("ddddddddddddddd"+entreprise);
         return entrepriseService.getEntrepriseById(id);
     }
     @GetMapping("/name/{societyName}")
-    public ResponseEntity<Entreprise> getEntrepriseByName(@PathVariable String societyName) {
+    public ResponseEntity<Entreprise> getEntrepriseByName(@PathVariable String societyName){
         return entrepriseService.getEntrepriseByName(societyName);
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Entreprise> updateEntreprise(@PathVariable Long id, @RequestBody Entreprise entrepriseDetails) {
-        return entrepriseService.updateEntreprise(id, entrepriseDetails);
-    }
+  @PutMapping("/edit/{id}")
+    public Entreprise updateEntreprise (@RequestBody Entreprise entrepriseDetails, @PathVariable Long id){
+    return entrepriseService.modifier(entrepriseDetails,id);
+}
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Entreprise> deleteEntreprise(@PathVariable Long id) {

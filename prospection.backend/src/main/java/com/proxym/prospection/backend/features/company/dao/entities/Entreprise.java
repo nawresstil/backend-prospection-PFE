@@ -60,12 +60,9 @@ public class Entreprise {
 
     private Number phone;
 
-    private Number fax;
-
     private String social;
-    private String imageUrl;
     private String status;
-
+/*
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "entreprise")
-    private Set<TacheS> tacheS;
+    private Set<TacheS> tacheS;*/
 }

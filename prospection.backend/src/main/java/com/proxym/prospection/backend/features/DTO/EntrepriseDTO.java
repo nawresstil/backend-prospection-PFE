@@ -3,6 +3,7 @@ package com.proxym.prospection.backend.features.DTO;
 import lombok.Data;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Data
 public class EntrepriseDTO {
@@ -25,7 +26,7 @@ public class EntrepriseDTO {
 
     private String nbrEmployee;
 
-    private Date creationDate;
+    private String creationDate;
 
     private Integer priority;
 

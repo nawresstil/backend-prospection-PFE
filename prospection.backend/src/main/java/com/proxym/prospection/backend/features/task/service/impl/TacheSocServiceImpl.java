@@ -43,8 +43,8 @@ public class TacheSocServiceImpl implements TacheSocService {
     @Override
     public TacheS createTacheS(TacheS tacheS, String societyName, String firstname) {
         Entreprise society = entrepriseRepository.findSocietyBySocietyName(societyName);
-        tacheS.setEntreprise(society); // to add id-entreprise
-        society.getTacheS().add(tacheS); //to add task to entreprise
+//        tacheS.setEntreprise(society); // to add id-entreprise
+//        society.getTacheS().add(tacheS); //to add task to entreprise
 //        User user = userRepository.findUserByFirstname(firstname);
 //        tacheS.setUser(user); // to add id-user
 //        user.getTacheS().add(tacheS); //to add task to user
@@ -85,7 +85,7 @@ public class TacheSocServiceImpl implements TacheSocService {
         tacheS.setContact(tacheSDetails.getContact());
         tacheS.setTitre(tacheSDetails.getTitre());
         tacheS.setDescription(tacheSDetails.getDescription());
-        tacheS.setEntreprise(tacheSDetails.getEntreprise());
+//        tacheS.setEntreprise(tacheSDetails.getEntreprise());
         tacheS.setEtat(tacheSDetails.getEtat());
         tacheS.setComment(tacheSDetails.getComment());
         tacheS.setFiles(tacheSDetails.getFiles());

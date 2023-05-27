@@ -1,6 +1,5 @@
 package com.proxym.prospection.backend.auth.security;
 
-import com.proxym.prospection.backend.features.DTO.UserRoleDTO;
 import com.proxym.prospection.backend.features.user.dao.entities.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -45,7 +44,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() +3600 * 320 * 360))
+                .setExpiration(new Date(System.currentTimeMillis() + 3600 * 320 * 360))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
