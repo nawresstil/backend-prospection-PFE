@@ -5,12 +5,11 @@ import com.proxym.prospection.backend.features.company.dao.repositories.Entrepri
 import com.proxym.prospection.backend.features.task.dao.entities.TacheS;
 import com.proxym.prospection.backend.features.task.dao.repository.TacheSocRepository;
 import com.proxym.prospection.backend.features.task.service.TacheSocService;
+import com.proxym.prospection.backend.features.user.dao.entities.User;
 import com.proxym.prospection.backend.features.user.dao.repositories.UserRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -43,12 +42,22 @@ public class TacheSocServiceImpl implements TacheSocService {
     @Override
     public TacheS createTacheS(TacheS tacheS, String societyName, String firstname) {
         Entreprise society = entrepriseRepository.findSocietyBySocietyName(societyName);
-//        tacheS.setEntreprise(society); // to add id-entreprise
+        tacheS.setEntreprise(society); // to add id-entreprise
 //        society.getTacheS().add(tacheS); //to add task to entreprise
-//        User user = userRepository.findUserByFirstname(firstname);
-//        tacheS.setUser(user); // to add id-user
+        User user = userRepository.findUserByFirstname(firstname);
+        tacheS.setUser(user); // to add id-user
 //        user.getTacheS().add(tacheS); //to add task to user
         return tacheSocRepository.save(tacheS);
+    }
+    @Override
+    public TacheS modifier(TacheS tacheSDetails, Long id,String societyName,String firstName) {
+        Entreprise society = entrepriseRepository.findSocietyBySocietyName(societyName);
+        tacheSDetails.setEntreprise(society);
+        User user = userRepository.findUserByFirstname(firstName);
+        tacheSDetails.setUser(user);
+//        TacheS tacheS = tacheSocRepository.findById(id).orElse(null);
+        tacheSDetails.setId(id);
+        return tacheSocRepository.saveAndFlush(tacheSDetails);
     }
     @Override
     public ResponseEntity<TacheS> getTacheSById(@PathVariable Long id) {
@@ -72,26 +81,7 @@ public class TacheSocServiceImpl implements TacheSocService {
 //        tacheSocRepository.save(task);
 //        System.out.println("Task updated successfully with enterprise name: " + enterpriseName);
 //    }
-    @Override
-    public ResponseEntity<TacheS> updateTacheS(@PathVariable Long id, @RequestBody TacheS tacheSDetails) {
-        TacheS tacheS = tacheSocRepository.findById(id).orElse(null);
 
-        if (tacheS == null) {
-            return ResponseEntity.notFound().build();
-        }
-        tacheS.setLabel(tacheSDetails.getLabel());
-        tacheS.setCollaborateurs(tacheSDetails.getCollaborateurs());
-        tacheS.setDate(tacheSDetails.getDate());
-        tacheS.setContact(tacheSDetails.getContact());
-        tacheS.setTitre(tacheSDetails.getTitre());
-        tacheS.setDescription(tacheSDetails.getDescription());
-//        tacheS.setEntreprise(tacheSDetails.getEntreprise());
-        tacheS.setEtat(tacheSDetails.getEtat());
-        tacheS.setComment(tacheSDetails.getComment());
-        tacheS.setFiles(tacheSDetails.getFiles());
-        TacheS updateTacheS = tacheSocRepository.save(tacheS);
-        return ResponseEntity.ok(updateTacheS);
-    }
     @Override
     public ResponseEntity<TacheS> deleteTacheS(@PathVariable Long id) {
         TacheS tacheS = tacheSocRepository.findById(id).orElse(null);

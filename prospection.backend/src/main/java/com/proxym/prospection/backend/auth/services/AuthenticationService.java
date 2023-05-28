@@ -27,8 +27,10 @@ public class AuthenticationService {
 
     //this authenticationResponse contains the token
     public AuthenticationResponse register(RegisterRequest request ) {
-
-       User  user = UserRoleDTO.builder()
+        if (!request.getPassword().equals(request.getConfirmPassword())) {
+            throw new IllegalArgumentException("Password and Confirm Password do not match");
+        }
+       User  user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
                 .JoiningDate(request.getJoiningDate())
@@ -37,7 +39,8 @@ public class AuthenticationService {
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-//                .phone(request.getPhone())
+                .confirmPassword(passwordEncoder.encode(request.getConfirmPassword()))
+//              .phone(request.getPhone())
                 .build();
         repository.save(user);
         var jwtToken = jwtService.generateToken( user);

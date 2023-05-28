@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@RestController
+    @RestController
     @RequestMapping("/tacheSoc")
     @Slf4j
     public class TacheSocController {
@@ -39,11 +39,9 @@ import java.util.List;
         }
 
         @PutMapping("/update/{id}")
-        public ResponseEntity<TacheS> updateTacheS(@PathVariable Long id,@RequestBody TacheS tacheSDetails) {
-            return tacheSocService.updateTacheS(id , tacheSDetails);
+        public TacheS updateTacheS(@RequestBody TacheS tacheSDetails,@PathVariable Long id) {
+            return tacheSocService.modifier(tacheSDetails,id,tacheSDetails.getContact(),tacheSDetails.getCollaborateurs());
         }
-
-
         @DeleteMapping("/delete/{id}")
         public ResponseEntity<TacheS> deleteClient(@PathVariable Long id) {
 

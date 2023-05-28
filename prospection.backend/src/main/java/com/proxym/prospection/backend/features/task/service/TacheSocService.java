@@ -14,11 +14,40 @@ public interface TacheSocService {
     TacheS createTacheS(TacheS tacheS, String societyName, String firstname);
 
     ResponseEntity<TacheS> getTacheSById(@PathVariable Long id);
-
+    TacheS modifier(TacheS tacheSDetails, Long id,String societyName,String firstName);
 //    @Transactional
 //    void updateTaskWithEnterpriseName(Long taskId, String enterpriseName);
 
-    ResponseEntity<TacheS> updateTacheS(@PathVariable Long id, @RequestBody TacheS tacheSDetails);
+//    ResponseEntity<TacheS> updateTacheS(@PathVariable Long id, @RequestBody TacheS tacheSDetails);
+
+    //    @Override
+    //    @Transactional
+    //    public void updateTaskWithEnterpriseName(Long taskId, String enterpriseName) {
+    //        TacheS task = tacheSocRepository.findById(taskId)
+    //                .orElseThrow(() -> new IllegalArgumentException("Task not found with ID: " + taskId));
+    //
+    //        Entreprise enterprise = entrepriseRepository.findSocietyBySocietyName(enterpriseName);
+    //
+    //        task.setEntreprise(enterprise);
+    //
+    //        tacheSocRepository.save(task);
+    //        System.out.println("Task updated successfully with enterprise name: " + enterpriseName);
+    //    }
+
+    //    @Override
+    //    @Transactional
+    //    public void updateTaskWithEnterpriseName(Long taskId, String enterpriseName) {
+    //        TacheS task = tacheSocRepository.findById(taskId)
+    //                .orElseThrow(() -> new IllegalArgumentException("Task not found with ID: " + taskId));
+    //
+    //        Entreprise enterprise = entrepriseRepository.findSocietyBySocietyName(enterpriseName);
+    //
+    //        task.setEntreprise(enterprise);
+    //
+    //        tacheSocRepository.save(task);
+    //        System.out.println("Task updated successfully with enterprise name: " + enterpriseName);
+    //    }
+
 
     ResponseEntity<TacheS> deleteTacheS(@PathVariable Long id);
 }

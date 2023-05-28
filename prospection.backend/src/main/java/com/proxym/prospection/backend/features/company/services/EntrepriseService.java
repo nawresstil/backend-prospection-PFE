@@ -2,7 +2,6 @@ package com.proxym.prospection.backend.features.company.services;
 
 
 import com.proxym.prospection.backend.features.company.dao.entities.Entreprise;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +23,7 @@ public interface EntrepriseService {
 
     ResponseEntity<Entreprise> deleteEntreprise(@PathVariable Long id);
 
+    //for percentage
     List<Entreprise> findAllEnteprises();
-
 
 }

@@ -1,5 +1,6 @@
 package com.proxym.prospection.backend.features.company.dao.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.proxym.prospection.backend.features.task.dao.entities.TacheS;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -62,7 +63,7 @@ public class Entreprise {
 
     private String social;
     private String status;
-/*
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "entreprise")
-    private Set<TacheS> tacheS;*/
+    private Set<TacheS> tacheS;
 }

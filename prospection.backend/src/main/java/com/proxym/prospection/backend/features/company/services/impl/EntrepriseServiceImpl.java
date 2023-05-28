@@ -1,16 +1,19 @@
-package com.proxym.prospection.backend.features.company.services;
+package com.proxym.prospection.backend.features.company.services.impl;
 
 import com.proxym.prospection.backend.features.company.dao.entities.Entreprise;
 import com.proxym.prospection.backend.features.company.dao.repositories.EntrepriseRepository;
+import com.proxym.prospection.backend.features.company.services.EntrepriseService;
+import com.proxym.prospection.backend.features.task.dao.entities.TacheS;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Service
-public class EntrepriseServiceImpl implements EntrepriseService{
+public class EntrepriseServiceImpl implements EntrepriseService {
     private final EntrepriseRepository entrepriseRepository;
 
     public EntrepriseServiceImpl(EntrepriseRepository entrepriseRepository) {
@@ -30,7 +33,6 @@ public class EntrepriseServiceImpl implements EntrepriseService{
     @Override
     public Entreprise createEntreprise(@RequestBody Entreprise entreprise) {
 //        entreprise.setTacheS(new HashSet<TacheS>() {}); //when create entreprise add id tacheS
-        System.out.println("ssssssssssssssssssssssssssssss"+entreprise);
     return entrepriseRepository.save(entreprise);
     }
 
