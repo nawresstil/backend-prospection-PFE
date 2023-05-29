@@ -11,7 +11,7 @@ import java.util.List;
 public interface ProjetService {
 
 
-    Projet createProjects(@RequestBody Projet projet);
+    Projet createProjects(@RequestBody Projet projet, String societyName);
 
     ResponseEntity<List<Projet>> getAllProjects();
 

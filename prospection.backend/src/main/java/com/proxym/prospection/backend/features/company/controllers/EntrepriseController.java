@@ -2,6 +2,7 @@ package com.proxym.prospection.backend.features.company.controllers;
 
 import com.proxym.prospection.backend.features.company.dao.entities.Entreprise;
 import com.proxym.prospection.backend.features.company.services.EntrepriseService;
+import com.proxym.prospection.backend.features.project.dao.entities.Projet;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +41,10 @@ public class EntrepriseController {
     public ResponseEntity<Entreprise> getEntrepriseByName(@PathVariable String societyName){
         return entrepriseService.getEntrepriseByName(societyName);
     }
-
+//    @GetMapping("/entreprises/projects")
+//    public Iterable<Projet> getProjectsByEntrepriseName(@RequestParam("name") String entrepriseName) {
+//        return entrepriseService.getProjectsByEntrepriseName(entrepriseName);
+//    }
   @PutMapping("/edit/{id}")
     public Entreprise updateEntreprise (@RequestBody Entreprise entrepriseDetails, @PathVariable Long id){
     return entrepriseService.modifier(entrepriseDetails,id);

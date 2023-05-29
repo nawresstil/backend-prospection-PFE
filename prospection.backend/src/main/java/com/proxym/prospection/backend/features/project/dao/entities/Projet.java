@@ -1,5 +1,7 @@
 package com.proxym.prospection.backend.features.project.dao.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.proxym.prospection.backend.features.company.dao.entities.Entreprise;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,6 +25,7 @@ public class Projet {
     private Long id;
 
     private String name;
+    private String societName;
 
     private Integer nbrEmployee;
 
@@ -32,9 +35,8 @@ public class Projet {
 
     private Integer budget;
 
-//    @JsonIgnore
-//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    private Entreprise entreprise;
-
-
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "entreprise_id")
+    private Entreprise entreprise;
 }

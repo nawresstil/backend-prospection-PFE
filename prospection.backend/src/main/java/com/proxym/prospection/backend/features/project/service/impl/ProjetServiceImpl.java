@@ -1,6 +1,7 @@
 package com.proxym.prospection.backend.features.project.service.impl;
 
 import com.proxym.prospection.backend.features.company.dao.entities.Entreprise;
+import com.proxym.prospection.backend.features.company.dao.repositories.EntrepriseRepository;
 import com.proxym.prospection.backend.features.project.dao.entities.Projet;
 import com.proxym.prospection.backend.features.project.dao.repositories.ProjectRepository;
 import com.proxym.prospection.backend.features.project.service.ProjetService;
@@ -15,14 +16,17 @@ import java.util.List;
 public class ProjetServiceImpl implements ProjetService {
 
     private final ProjectRepository projectRepository;
+    private final EntrepriseRepository entrepriseRepository;
 
-    public ProjetServiceImpl(ProjectRepository projectRepository) {
+    public ProjetServiceImpl(ProjectRepository projectRepository, EntrepriseRepository entrepriseRepository) {
         this.projectRepository = projectRepository;
+        this.entrepriseRepository = entrepriseRepository;
     }
 
     @Override
-    public Projet createProjects(@RequestBody Projet projet) {
-
+    public Projet createProjects(@RequestBody Projet projet, String societyName) {
+        Entreprise society = entrepriseRepository.findSocietyBySocietyName(societyName);
+        projet.setEntreprise(society); // to add id-entreprise
         return projectRepository.save(projet);
     }
 

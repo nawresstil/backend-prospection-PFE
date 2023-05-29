@@ -26,7 +26,7 @@ public class SecurityConfiguration {
                 .disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/auth/**","/entreprise/**","/clients/**","/user/**","/tacheSoc/**","/tasks-done/all","/tasks-todo-today/all",
-                        "/task-todo-after/all","/tasks-delayed/all","/prospects/all")
+                        "/task-todo-after/all","/tasks-delayed/all","/prospects/all","/project/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

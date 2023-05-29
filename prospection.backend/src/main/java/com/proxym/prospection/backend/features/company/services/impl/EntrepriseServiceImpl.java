@@ -3,22 +3,24 @@ package com.proxym.prospection.backend.features.company.services.impl;
 import com.proxym.prospection.backend.features.company.dao.entities.Entreprise;
 import com.proxym.prospection.backend.features.company.dao.repositories.EntrepriseRepository;
 import com.proxym.prospection.backend.features.company.services.EntrepriseService;
-import com.proxym.prospection.backend.features.task.dao.entities.TacheS;
+import com.proxym.prospection.backend.features.project.dao.entities.Projet;
+import com.proxym.prospection.backend.features.project.dao.repositories.ProjectRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.HashSet;
 import java.util.List;
 
 @Service
 public class EntrepriseServiceImpl implements EntrepriseService {
     private final EntrepriseRepository entrepriseRepository;
+    private final ProjectRepository projetRepository;
 
-    public EntrepriseServiceImpl(EntrepriseRepository entrepriseRepository) {
+    public EntrepriseServiceImpl(EntrepriseRepository entrepriseRepository, ProjectRepository projetRepository) {
 
         this.entrepriseRepository = entrepriseRepository;
+        this.projetRepository = projetRepository;
     }
 
     @Override
@@ -36,6 +38,15 @@ public class EntrepriseServiceImpl implements EntrepriseService {
     return entrepriseRepository.save(entreprise);
     }
 
+//    @Override
+//    public Iterable<Projet> getProjectsByEntrepriseName(String entrepriseName) {
+//        Entreprise entreprise = entrepriseRepository.findEntrepriseByName(entrepriseName);
+//        if (entreprise != null) {
+//            return projetRepository.findByEntreprise(entreprise);
+//        } else {
+//            return null;
+//        }
+//    }
     @Override
     public ResponseEntity<Entreprise> getEntrepriseById(@PathVariable Long id) {
         Entreprise entreprise = entrepriseRepository.findById(id).orElse(null);

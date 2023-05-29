@@ -17,6 +17,7 @@ public interface EntrepriseRepository extends JpaRepository<Entreprise,Long> {
     List<Entreprise> findProspect();
     Entreprise findSocietyBySocietyName(String name);
 
+
 //    @Query(value = "SELECT NEW com.proxym.prospection.dto.CountSocieties(COUNT(*)/(SELECT COUNT(*) FROM  Entreprise) * 100, status ) FROM Entreprise GROUP BY status")
 //    public List<CountSocieties> getPercentageGroupByStatus();
 }

@@ -25,7 +25,7 @@ public class ProjectController {
     @PostMapping("/add")
     public Projet createProjects(@RequestBody Projet projet) {
 
-        return projetService.createProjects(projet);
+        return projetService.createProjects(projet, projet.getSocietName());
     }
 
 

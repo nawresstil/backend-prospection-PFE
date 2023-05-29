@@ -38,6 +38,7 @@ public class User implements UserDetails {
     private String Designation;
 
     private String Departments;
+//    private String phone;
 
     @Column(unique = true)
     private String username;
@@ -49,7 +50,7 @@ public class User implements UserDetails {
 
     private String confirmPassword;
 
-//    private Number phone;
+    private String phone;
 
     private String oldPassword;
     @Enumerated(EnumType.STRING)
