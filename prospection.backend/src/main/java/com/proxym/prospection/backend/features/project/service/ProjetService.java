@@ -18,7 +18,7 @@ public interface ProjetService {
     ResponseEntity<Projet> getProjectById(@PathVariable Long projetId);
 
 //    ResponseEntity<Projet> updateProject(@PathVariable Long id, @RequestBody Projet projetDetails);
-    Projet updateProject (@RequestBody Projet projetDetails, @PathVariable Long id);
+    Projet updateProject (@RequestBody Projet projetDetails, @PathVariable Long id, String societyName);
 
     ResponseEntity<Projet> deleteProject(@PathVariable Long id);
 }

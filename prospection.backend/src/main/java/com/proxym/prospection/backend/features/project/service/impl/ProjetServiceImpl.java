@@ -50,8 +50,10 @@ public class ProjetServiceImpl implements ProjetService {
     }
 
     @Override
-    public Projet updateProject(Projet projetDetails, Long id) {
+    public Projet updateProject(Projet projetDetails, Long id, String societyName) {
         projetDetails.setId(id);
+        Entreprise society = entrepriseRepository.findSocietyBySocietyName(societyName);
+        projetDetails.setEntreprise(society);
         return projectRepository.saveAndFlush(projetDetails);
     }
 

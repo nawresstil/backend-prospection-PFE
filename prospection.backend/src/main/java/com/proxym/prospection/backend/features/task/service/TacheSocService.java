@@ -14,7 +14,7 @@ public interface TacheSocService {
     TacheS createTacheS(TacheS tacheS, String societyName, String firstname);
 
     ResponseEntity<TacheS> getTacheSById(@PathVariable Long id);
-    TacheS modifier(TacheS tacheSDetails, Long id,String societyName,String firstName);
+    TacheS modifier(@RequestBody TacheS tacheSDetails,@PathVariable Long id,String societyName,String firstName);
 //    @Transactional
 //    void updateTaskWithEnterpriseName(Long taskId, String enterpriseName);
 

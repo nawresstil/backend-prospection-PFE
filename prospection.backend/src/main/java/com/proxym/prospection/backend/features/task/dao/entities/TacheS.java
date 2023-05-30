@@ -27,7 +27,7 @@ public class TacheS {
     private String label;
     private String collaborateurs;
     private Date date;
-    private Time times;
+    private String times;
     private String contact;
     private String titre;
     private String description;
