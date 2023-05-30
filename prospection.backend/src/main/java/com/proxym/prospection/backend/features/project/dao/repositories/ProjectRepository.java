@@ -13,5 +13,4 @@ public interface ProjectRepository extends JpaRepository<Projet,Long> {
     @Override
     Optional<Projet> findById(Long aLong);
     List<Projet> findByEntreprise(Entreprise entreprise);
-
 }

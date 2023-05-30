@@ -15,7 +15,7 @@ public interface EntrepriseService {
 
     Entreprise createEntreprise(@RequestBody Entreprise entreprise);
 
-//    Iterable<Projet> getProjectsByEntrepriseName(String entrepriseName);
+    Iterable<Projet> getProjectsByEntrepriseName(String entrepriseName);
 
     ResponseEntity<Entreprise> getEntrepriseById(@PathVariable Long id);
     ResponseEntity<Entreprise> getEntrepriseByName (@PathVariable String societyName);

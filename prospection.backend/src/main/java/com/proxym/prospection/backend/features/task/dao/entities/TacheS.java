@@ -1,5 +1,6 @@
 package com.proxym.prospection.backend.features.task.dao.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.proxym.prospection.backend.features.company.dao.entities.Entreprise;
 import com.proxym.prospection.backend.features.user.dao.entities.User;
 import jakarta.persistence.*;
@@ -37,9 +38,11 @@ public class TacheS {
 
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private Client client;
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "entreprise_id")
     private Entreprise entreprise;
+
 
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private Prospect prospect;

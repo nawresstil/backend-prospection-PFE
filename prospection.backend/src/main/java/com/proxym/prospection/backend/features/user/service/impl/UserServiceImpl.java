@@ -4,8 +4,11 @@ package com.proxym.prospection.backend.features.user.service.impl;
 import com.proxym.prospection.backend.features.user.dao.entities.User;
 import com.proxym.prospection.backend.features.user.dao.repositories.UserRepository;
 import com.proxym.prospection.backend.features.user.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -119,9 +122,7 @@ public class UserServiceImpl implements UserService {
             userRepository.save(user);
 
             // Send the new password to the user (you can customize this part based on your requirements)
-/*
             sendPasswordByEmail(user.getEmail(), newPassword);
-*/
 
             return ResponseEntity.ok(user);
 
@@ -154,7 +155,7 @@ public class UserServiceImpl implements UserService {
 
         return password.toString();
     }
-/*    @Autowired
+    @Autowired
     private JavaMailSender javaMailSender;
     // Method to send the new password to the user (you can customize this method based on your requirements)
     private void sendPasswordByEmail(String email, String password) {
@@ -165,5 +166,5 @@ public class UserServiceImpl implements UserService {
         message.setText("Your new password is: "+ password);
 
         javaMailSender.send(message);
-    }*/
+    }
 }

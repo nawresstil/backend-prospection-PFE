@@ -9,7 +9,8 @@ import java.util.List;
 
 @Repository
 public interface EntrepriseRepository extends JpaRepository<Entreprise,Long> {
-    //    Prospect findEntrepriseBySocietyName(String name);
+
+//    Entreprise findEntrepriseByName(String name);
     @Query("SELECT E FROM Entreprise E WHERE E.status = 'client'")
     List<Entreprise> findClient();
 

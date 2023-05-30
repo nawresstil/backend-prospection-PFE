@@ -36,7 +36,8 @@ public class Projet {
     private Integer budget;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinColumn(name = "entreprise_id")
     private Entreprise entreprise;
+
 }

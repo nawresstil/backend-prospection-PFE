@@ -65,10 +65,11 @@ public class Entreprise {
 
     private String social;
     private String status;
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "entreprise")
+
+//    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE},mappedBy = "entreprise")
     private List<TacheS> tacheS;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "entreprise")
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE}, mappedBy = "entreprise")
     private List<Projet> projets;
 }

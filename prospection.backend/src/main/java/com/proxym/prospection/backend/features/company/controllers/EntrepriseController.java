@@ -19,19 +19,16 @@ public class EntrepriseController {
 
         this.entrepriseService = entrepriseService;
     }
-
     @PostMapping("/create")
     public Entreprise createEntreprise(@RequestBody Entreprise entreprise) {
         System.out.println("ddddddddddddddd"+entreprise);
         return entrepriseService.createEntreprise(entreprise);
     }
-
     @GetMapping("/all")
     public ResponseEntity<List<Entreprise>> getAllEntreprises() {
 
         return entrepriseService.getAllEntreprises();
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<Entreprise> getEntrepriseById(@PathVariable Long id) {
 
@@ -41,10 +38,10 @@ public class EntrepriseController {
     public ResponseEntity<Entreprise> getEntrepriseByName(@PathVariable String societyName){
         return entrepriseService.getEntrepriseByName(societyName);
     }
-//    @GetMapping("/entreprises/projects")
-//    public Iterable<Projet> getProjectsByEntrepriseName(@RequestParam("name") String entrepriseName) {
-//        return entrepriseService.getProjectsByEntrepriseName(entrepriseName);
-//    }
+    @GetMapping("/entreprises/projects/{entrepriseName}")
+    public Iterable<Projet> getProjectsByEntrepriseName(@PathVariable String entrepriseName) {
+        return entrepriseService.getProjectsByEntrepriseName(entrepriseName);
+    }
   @PutMapping("/edit/{id}")
     public Entreprise updateEntreprise (@RequestBody Entreprise entrepriseDetails, @PathVariable Long id){
     return entrepriseService.modifier(entrepriseDetails,id);

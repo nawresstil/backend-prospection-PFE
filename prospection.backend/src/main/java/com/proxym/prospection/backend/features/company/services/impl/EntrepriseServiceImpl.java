@@ -38,15 +38,17 @@ public class EntrepriseServiceImpl implements EntrepriseService {
     return entrepriseRepository.save(entreprise);
     }
 
-//    @Override
-//    public Iterable<Projet> getProjectsByEntrepriseName(String entrepriseName) {
-//        Entreprise entreprise = entrepriseRepository.findEntrepriseByName(entrepriseName);
-//        if (entreprise != null) {
-//            return projetRepository.findByEntreprise(entreprise);
-//        } else {
-//            return null;
-//        }
-//    }
+
+
+    @Override
+    public Iterable<Projet> getProjectsByEntrepriseName(String entrepriseName) {
+        Entreprise entreprise = entrepriseRepository.findSocietyBySocietyName(entrepriseName);
+        if (entreprise != null) {
+            return projetRepository.findByEntreprise(entreprise);
+        } else {
+            return null;
+        }
+    }
     @Override
     public ResponseEntity<Entreprise> getEntrepriseById(@PathVariable Long id) {
         Entreprise entreprise = entrepriseRepository.findById(id).orElse(null);
