@@ -38,7 +38,6 @@ public class User implements UserDetails {
     private String Designation;
 
     private String Departments;
-//    private String phone;
 
     @Column(unique = true)
     private String username;
