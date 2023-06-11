@@ -1,6 +1,7 @@
 package com.proxym.prospection.backend.features.company.services;
 
 
+import com.proxym.prospection.backend.features.DTO.CountSocieties;
 import com.proxym.prospection.backend.features.company.dao.entities.Entreprise;
 import com.proxym.prospection.backend.features.project.dao.entities.Projet;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +20,9 @@ public interface EntrepriseService {
 
     ResponseEntity<Entreprise> getEntrepriseById(@PathVariable Long id);
     ResponseEntity<Entreprise> getEntrepriseByName (@PathVariable String societyName);
-//    Optional<EntrepriseDTO> findProspectById(Long id);
-
-//    List<String> getAllBySocietyName();
+    List<CountSocieties> getPercentageGroupByStatus();
     Entreprise modifier (@RequestBody Entreprise entrepriseDetails, @PathVariable Long id);
 
     ResponseEntity<Entreprise> deleteEntreprise(@PathVariable Long id);
-
-    //for percentage
-    List<Entreprise> findAllEnteprises();
 
 }

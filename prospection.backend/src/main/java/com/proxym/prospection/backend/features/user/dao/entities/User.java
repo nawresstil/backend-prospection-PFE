@@ -1,7 +1,9 @@
 package com.proxym.prospection.backend.features.user.dao.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.proxym.prospection.backend.features.action.dao.entities.Action;
 import com.proxym.prospection.backend.features.task.dao.entities.TacheS;
 import com.proxym.prospection.backend.features.user.enums.Role;
 import jakarta.persistence.*;
@@ -9,12 +11,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.sql.Date;
 import java.util.Collection;
+
 import java.util.List;
-import java.util.Set;
+
 
 
 @Data
@@ -34,6 +41,7 @@ public class User implements UserDetails {
     private String lastname;
 
     private String JoiningDate;
+//    private Date creationDate;
 
     private String Designation;
 
@@ -55,9 +63,23 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "user")
-    private Set<TacheS> tacheS;
+//    @JsonIgnore
+//    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "user")
+//    private Set<TacheS> tacheS;
+
+    /*@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "action_id")
+    private Action action;*/
+
+    @OneToMany(mappedBy = "user")
+    @Fetch(value = FetchMode.SUBSELECT)
+    @JsonManagedReference("user-action")
+    private List<Action> actionList;
+
+    @OneToMany(mappedBy = "user")
+    @Fetch(value = FetchMode.SUBSELECT)
+    @JsonManagedReference("user-tacheS")
+    private List<TacheS> tacheSListList;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
@@ -71,7 +93,6 @@ public class User implements UserDetails {
     public String getPassword() {
         return password;
     }
-
 
     @Override
     public String getUsername() {

@@ -1,5 +1,6 @@
 package com.proxym.prospection.backend.features.company.services.impl;
 
+import com.proxym.prospection.backend.features.DTO.CountSocieties;
 import com.proxym.prospection.backend.features.company.dao.entities.Entreprise;
 import com.proxym.prospection.backend.features.company.dao.repositories.EntrepriseRepository;
 import com.proxym.prospection.backend.features.company.services.EntrepriseService;
@@ -34,7 +35,6 @@ public class EntrepriseServiceImpl implements EntrepriseService {
 
     @Override
     public Entreprise createEntreprise(@RequestBody Entreprise entreprise) {
-//        entreprise.setTacheS(new HashSet<TacheS>() {}); //when create entreprise add id tacheS
     return entrepriseRepository.save(entreprise);
     }
 
@@ -86,8 +86,8 @@ public class EntrepriseServiceImpl implements EntrepriseService {
     }
 
     @Override
-    public List<Entreprise> findAllEnteprises() {
-        return entrepriseRepository.findAll();
+    public List<CountSocieties> getPercentageGroupByStatus(){
+        return entrepriseRepository.getPercentageGroupByStatus();
     }
 
 }

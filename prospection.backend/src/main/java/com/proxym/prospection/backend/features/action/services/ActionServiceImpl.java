@@ -2,6 +2,9 @@ package com.proxym.prospection.backend.features.action.services;
 
 import com.proxym.prospection.backend.features.action.dao.entities.Action;
 import com.proxym.prospection.backend.features.action.dao.repositories.ActionRepository;
+import com.proxym.prospection.backend.features.company.dao.entities.Entreprise;
+import com.proxym.prospection.backend.features.user.dao.entities.User;
+import com.proxym.prospection.backend.features.user.dao.repositories.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,10 +15,12 @@ import java.util.List;
 @Service
 public class ActionServiceImpl implements ActionService {
     private final ActionRepository actionRepository;
+    private final UserRepository userRepository;
 
-    public ActionServiceImpl(ActionRepository actionRepository) {
+    public ActionServiceImpl(ActionRepository actionRepository, UserRepository userRepository) {
 
         this.actionRepository = actionRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -28,8 +33,9 @@ public class ActionServiceImpl implements ActionService {
     }
 
     @Override
-    public Action createAction(@RequestBody Action action) {
-//        entreprise.setTacheS(new HashSet<TacheS>() {}); //when create entreprise add id tacheS
+    public Action createAction(Action action,  String firstname) {
+        User user = userRepository.findUserByUsername(firstname);
+        action.setUser(user);
     return actionRepository.save(action);
     }
 
@@ -44,7 +50,9 @@ public class ActionServiceImpl implements ActionService {
     }
 
     @Override
-    public Action updateAction(Action actionDetails, Long id) {
+    public Action updateAction(Action actionDetails, Long id,String firstname) {
+        User user = userRepository.findUserByUsername(firstname);
+        actionDetails.setUser(user);
         actionDetails.setId(id);
         return actionRepository.saveAndFlush(actionDetails);
     }

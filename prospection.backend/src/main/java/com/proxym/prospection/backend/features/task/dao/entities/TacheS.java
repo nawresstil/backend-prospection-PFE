@@ -1,5 +1,6 @@
 package com.proxym.prospection.backend.features.task.dao.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.proxym.prospection.backend.features.company.dao.entities.Entreprise;
 import com.proxym.prospection.backend.features.user.dao.entities.User;
@@ -47,6 +48,9 @@ public class TacheS {
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private Prospect prospect;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    private User user;
+    @ManyToOne()
+    @JsonBackReference(value="user-tacheS")
     private User user;
 }

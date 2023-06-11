@@ -1,5 +1,9 @@
 package com.proxym.prospection.backend.features.action.dao.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.proxym.prospection.backend.features.company.dao.entities.Entreprise;
+import com.proxym.prospection.backend.features.user.dao.entities.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,4 +38,13 @@ import java.util.Date;
         private String dateDebut;
 
         private String dateFin;
+
+        private String etat;
+
+//        @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//        private User user;
+
+        @ManyToOne()
+        @JsonBackReference(value="user-action")
+        private User user;
 }

@@ -44,7 +44,7 @@ public class TacheSocServiceImpl implements TacheSocService {
         Entreprise society = entrepriseRepository.findSocietyBySocietyName(societyName);
         tacheS.setEntreprise(society); // to add id-entreprise
 //        society.getTacheS().add(tacheS); //to add task to entreprise
-        User user = userRepository.findUserByFirstname(firstname);
+        User user = userRepository.findUserByUsername(firstname);
         tacheS.setUser(user); // to add id-user
 //        user.getTacheS().add(tacheS); //to add task to user
         return tacheSocRepository.save(tacheS);
@@ -53,7 +53,7 @@ public class TacheSocServiceImpl implements TacheSocService {
     public TacheS modifier(TacheS tacheSDetails, Long id,String societyName,String firstName) {
         Entreprise society = entrepriseRepository.findSocietyBySocietyName(societyName);
         tacheSDetails.setEntreprise(society);
-        User user = userRepository.findUserByFirstname(firstName);
+        User user = userRepository.findUserByUsername(firstName);
         tacheSDetails.setUser(user);
     //  TacheS tacheS = tacheSocRepository.findById(id).orElse(null);
         tacheSDetails.setId(id);

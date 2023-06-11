@@ -1,5 +1,6 @@
 package com.proxym.prospection.backend.features.user.service;
 
+import com.proxym.prospection.backend.features.guide.dao.entities.GuideProspection;
 import com.proxym.prospection.backend.features.user.dao.entities.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

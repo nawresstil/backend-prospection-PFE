@@ -38,7 +38,6 @@ public class UserServiceImpl implements UserService {
         return ResponseEntity.ok().body(user);
 
     }
-
     @Override
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         User user = userRepository.findById(id).orElse(null);
@@ -80,9 +79,9 @@ public class UserServiceImpl implements UserService {
         user.setFirstname(userDetails.getFirstname());
         user.setLastname(userDetails.getLastname());
         user.setUsername(userDetails.getUsername());
-/*
-//        user.setPhone(userDetails.getPhone());
-*/
+
+        user.setPhone(userDetails.getPhone());
+
         user.setOldPassword(passwordEncoder.encode(userDetails.getOldPassword()));
         user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
         user.setConfirmPassword(passwordEncoder.encode(userDetails.getConfirmPassword()));
@@ -133,7 +132,7 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public ResponseEntity<User> getUserByFirstname(@PathVariable String firstname) {
-        User user = userRepository.findUserByFirstname(firstname);
+        User user = userRepository.findUserByUsername(firstname);
 
         if (user == null) {
             return ResponseEntity.notFound().build();

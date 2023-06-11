@@ -1,5 +1,6 @@
 package com.proxym.prospection.backend.features.company.controllers;
 
+import com.proxym.prospection.backend.features.DTO.CountSocieties;
 import com.proxym.prospection.backend.features.company.dao.entities.Entreprise;
 import com.proxym.prospection.backend.features.company.services.EntrepriseService;
 import com.proxym.prospection.backend.features.project.dao.entities.Projet;
@@ -21,7 +22,6 @@ public class EntrepriseController {
     }
     @PostMapping("/create")
     public Entreprise createEntreprise(@RequestBody Entreprise entreprise) {
-        System.out.println("ddddddddddddddd"+entreprise);
         return entrepriseService.createEntreprise(entreprise);
     }
     @GetMapping("/all")
@@ -37,6 +37,11 @@ public class EntrepriseController {
     @GetMapping("/name/{societyName}")
     public ResponseEntity<Entreprise> getEntrepriseByName(@PathVariable String societyName){
         return entrepriseService.getEntrepriseByName(societyName);
+    }
+    @GetMapping("/percentageCountStatus")
+    List<CountSocieties> getPercentageGroupByStatus()
+    {
+        return entrepriseService.getPercentageGroupByStatus();
     }
     @GetMapping("/entreprises/projects/{entrepriseName}")
     public Iterable<Projet> getProjectsByEntrepriseName(@PathVariable String entrepriseName) {

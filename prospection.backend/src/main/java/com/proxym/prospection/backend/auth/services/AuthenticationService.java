@@ -9,8 +9,12 @@ import com.proxym.prospection.backend.features.DTO.UserRoleDTO;
 import com.proxym.prospection.backend.features.user.dao.entities.User;
 import com.proxym.prospection.backend.features.user.dao.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +33,10 @@ public class AuthenticationService {
     public AuthenticationResponse register(RegisterRequest request ) {
         if (!request.getPassword().equals(request.getConfirmPassword())) {
             throw new IllegalArgumentException("Password and Confirm Password do not match");
+        }
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated() || authentication instanceof AnonymousAuthenticationToken) {
+            throw new InsufficientAuthenticationException("User must be authenticated to register");
         }
        User  user = User.builder()
                 .firstname(request.getFirstname())

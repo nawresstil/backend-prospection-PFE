@@ -1,5 +1,6 @@
 package com.proxym.prospection.backend.features.user.controller;
 
+import com.proxym.prospection.backend.features.guide.dao.entities.GuideProspection;
 import com.proxym.prospection.backend.features.user.dao.entities.User;
 import com.proxym.prospection.backend.features.user.service.UserService;
 import org.springframework.http.ResponseEntity;
