@@ -25,6 +25,9 @@ import java.util.Date;
 
         private Long id;
 
+        private String tracability;
+
+
         private String typeAction;
 
         private String titreAction;

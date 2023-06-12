@@ -44,7 +44,6 @@ public class TacheS {
     @JoinColumn(name = "entreprise_id")
     private Entreprise entreprise;
 
-
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private Prospect prospect;
 

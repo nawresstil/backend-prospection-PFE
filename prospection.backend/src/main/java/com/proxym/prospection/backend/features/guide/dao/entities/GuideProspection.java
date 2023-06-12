@@ -20,6 +20,8 @@ public class GuideProspection {
 
     private Long id;
 
+    private String tracability;
+
     private String creationDate;
 
     private String annee;
